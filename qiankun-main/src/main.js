@@ -3,7 +3,11 @@ import App from "./App.vue"
 import Router from 'vue-router'
 import router from "./router"
 import store from "./store"
-import { registerMicroApps, start } from "qiankun"
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
+Vue.use(Antd);
+
+import { registerMicroApps, start,setDefaultMountApp } from "qiankun"
 Vue.use(Router);
 Vue.config.productionTip = false;
 console.log('qiankun-main.js');
@@ -62,7 +66,6 @@ registerMicroApps([
 }
 
 );
-// setDefaultMountApp("/app1");
 // 启动
 start();
 
