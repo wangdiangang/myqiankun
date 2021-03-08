@@ -6,7 +6,7 @@ import store from "./store"
 import { registerMicroApps, start } from "qiankun"
 Vue.use(Router);
 Vue.config.productionTip = false;
-
+console.log('qiankun-main.js');
 new Vue({
     router,
     store,
@@ -31,7 +31,8 @@ registerMicroApps([
         container: '#vue',
         activeRule: '/vue2',
         props: {
-            appContent: '我是主应用传给2子应用的值'
+            appContent: '我是主应用传给2子应用的值',
+            store
         }
     },{
         name: "vue vue3",
@@ -45,17 +46,17 @@ registerMicroApps([
 ], {
     beforeLoad: [
         app => { // 挂载前回调
-            console.log("before load", app);
+            console.log("挂载前回调 before load", app);
         }
     ],
     beforeMount: [
         app => { // 挂载后回调
-            console.log("before mount", app);
+            console.log("挂载后回调 before mount", app);
         }
     ],
     afterUnmount: [
         app => { // 卸载后回调
-            console.log("after unload", app);
+            console.log("卸载后回调 after unload", app);
         }
     ]
 }

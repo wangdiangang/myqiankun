@@ -1,0 +1,32 @@
+{
+  "name": "weiqiankun",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "npm-run-all --serial install:*",
+    "install:qiankun-main": "cd qiankun-main&& npm i",
+    "install:qiankun-vue-child": " cd qiankun-vue-child && npm i",
+    "install:qiankun-vue-child22": " cd qiankun-vue-child22 && npm i",
+    "install:qiankun-vue-child333": " cd qiankun-vue-child333 && npm i",
+    "start": "npm-run-all --parallel start:*",
+    "start:qiankun-main": "cd qiankun-main&&npm run serve",
+    "start:qiankun-vue-child": " cd qiankun-vue-child && npm run serve",
+    "start:qiankun-vue-child22": " cd qiankun-vue-child22 && npm run serve",
+    "start:qiankun-vue-child333": " cd qiankun-vue-child333 && npm run serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangdiangang/myqiankun.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangdiangang/myqiankun/issues"
+  },
+  "homepage": "https://github.com/wangdiangang/myqiankun#readme",
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

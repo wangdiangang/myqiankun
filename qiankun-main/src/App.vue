@@ -1,11 +1,11 @@
 <template>
   <div class="app">
-    这是最外边的名字{{userName}}
+    这是最外边的名字{{userName}}{{count}}
+    <button @click="jia">加10</button>
     <span><router-link to="/">点击跳转到父页面</router-link></span>
     <span><router-link to="/vue">点击跳转到子页面</router-link></span>
     <span><router-link to="/vue2">点击跳转到二子页面</router-link></span>
     <span><router-link to="/vue3">点击跳转到三三三子页面</router-link></span>
-
     <router-view />
     <div id="vue"></div>
     <!-- 重点2：子应用容器 id -->
@@ -15,12 +15,23 @@
 <script>
 // import store from "./store"
 export default {
+  computed:{
+ count () {
+      return this.$store.state.num
+    }
+  },
   name: "App",
   data() {
     return {
       userName: this.$store.state.user.name,
     };
   },
+  methods:{
+    jia(){
+      this.$store.dispatch('CHANGENUM',100)
+    }
+  },
+
   mounted() {
     console.log("this.$store", this.$store);
   },
@@ -42,8 +53,10 @@ export default {
   margin: 20px;
 }
 #vue {
-  width: 800px;
+  width: calc(100% - 200px);
   height: 800px;
   border: 1px solid red;
+  overflow: scroll;
+  
 }
 </style>
