@@ -5,20 +5,24 @@ import router from "./router"
 import store from "./store"
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
+import actions from './shared'
 Vue.use(Antd);
-
-import { registerMicroApps, start,setDefaultMountApp } from "qiankun"
+import { registerMicroApps, start,initGlobalState,setDefaultMountApp } from "qiankun"
 Vue.use(Router);
 Vue.config.productionTip = false;
 console.log('qiankun-main.js');
-new Vue({
+console.log(actions);
+Vue.prototype.$actions=actions
+
+let vue=new Vue({
     router,
     store,
     render: h => h(App)
 }).$mount('#app');
 
+localStorage.setItem('token','13800138000')
 // 在主应用中注册子应用
-
+console.log('rpocess',process.env);
 registerMicroApps([
     {
         name: "vue App",
@@ -44,7 +48,8 @@ registerMicroApps([
         container: '#vue',
         activeRule: '/vue3',
         props: {
-            appContent: '我是主应用传给三子应用的值'
+            appContent: '我是主应用传给三子应用的值',
+            store
         }
     }
 ], {
@@ -66,6 +71,8 @@ registerMicroApps([
 }
 
 );
+setDefaultMountApp('/vue3/about')
+
 // 启动
 start();
 

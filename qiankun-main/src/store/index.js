@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import actions from '../shared/index'
 Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
@@ -8,7 +8,10 @@ const store = new Vuex.Store({
       user: {
           name:'张三'
       },
-      chengeKeys:['0']
+      chengeKeys:['2'],
+      channel:'2009',
+      gundan:12345,
+      taskList:[1,2]
     },
     mutations: {
       changeNum(state,n){
@@ -18,6 +21,9 @@ const store = new Vuex.Store({
         console.log(pay);
         state.chengeKeys.splice(0,1,pay+'')
         console.log(state.chengeKeys);
+      },
+      gundan(state,payLoad){
+        state.gundan+=payLoad
       }
     },
     actions:{
@@ -27,6 +33,10 @@ const store = new Vuex.Store({
       GENGGAI({commit},pay){
         console.log(pay);
         commit('genggai',pay)
+      },
+      GUNDAN({commit},payLoad){
+        console.log('1234567865432',payLoad);
+        commit('gundan',payLoad)
       }
     }
   })

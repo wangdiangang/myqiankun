@@ -32,7 +32,7 @@
           <a-menu-item key="3">
             <router-link to="/vue3">点击跳转到三三三子页面</router-link>
           </a-menu-item>
-
+          <a-menu-item key="4"> <div @click="textcheng">测试变化按钮<span @click="wocao">卧槽</span></div> </a-menu-item>
         </a-menu>
       </a-layout-header>
       <a-layout>
@@ -80,7 +80,9 @@
             <a-breadcrumb-item>Home</a-breadcrumb-item>
             <a-breadcrumb-item>List</a-breadcrumb-item>
             <a-breadcrumb-item>App</a-breadcrumb-item>
-            这是最外边的名字{{ userName }}{{ count }}
+            <a-breadcrumb-item>
+              这是主应用基座的名字{{ userName }} ===={{num}}</a-breadcrumb-item
+            >
           </a-breadcrumb>
           <a-layout-content
             id="vue"
@@ -95,40 +97,57 @@
         </a-layout>
       </a-layout>
     </a-layout>
+    <div id="vue2"></div>
   </div>
 </template>
 
 <script>
 // import store from "./store"
+import actions from "./shared";
 export default {
   computed: {
     count() {
       return this.$store.state.num;
     },
-    defaultselectedkeys1(){
-      return this.$store.state.chengeKeys
+    defaultselectedkeys1() {
+      return this.$store.state.chengeKeys;
+    },
+    userName(){
+    return this.$store.state.user.name
     }
   },
   name: "App",
   data() {
     return {
-      defaultselectedkeys:['1'],
-      // defaultselectedkeys1:['0'],
+      num:0,
+      defaultselectedkeys: ["1"],
       collapsed: false,
-      userName: this.$store.state.user.name,
+      // userName: this.$store.state.user.name,
     };
   },
+
   methods: {
-    // go3(){
-    //   this.defaultselectedkeys1.splice(0,1,'3')
-    // },
-    jia() {
-      this.$store.dispatch("CHANGENUM", 100);
+    wocao(){
+      this.$store.dispatch('GUNDAN',10)
     },
+    textcheng(){
+      console.log('%c测试变化','color:red',this);
+      actions.setGlobalState({taskList:[1,2,34,5,6],token:'这是新的token'})
+      console.log('actions',actions);
+    },
+    // jia() {
+    //   this.$store.dispatch("CHANGENUM", 100);
+    // },
   },
 
   mounted() {
-    console.log("this.$store", this.$store);
+    console.log('%cactions','color:red',actions);
+      actions.onGlobalStateChange(state=>{
+      console.log('================',state);
+      this.num=state.num
+    })
+
+     
   },
 };
 </script>
