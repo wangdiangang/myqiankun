@@ -11,8 +11,7 @@ import { registerMicroApps, start,initGlobalState,setDefaultMountApp } from "qia
 Vue.use(Router);
 Vue.config.productionTip = false;
 console.log('qiankun-main.js');
-console.log(actions);
-Vue.prototype.$actions=actions
+
 
 let vue=new Vue({
     router,
@@ -71,7 +70,7 @@ registerMicroApps([
 }
 
 );
-setDefaultMountApp('/vue3/about')
+setDefaultMountApp('/')
 
 // 启动
 start();
